@@ -1,5 +1,5 @@
 {
-  "name": "hogordecanes",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
-    "react-browser-router": "^2.1.2",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1"
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.23.0",
+    "router-dom": "^2.2.11",
+    "sweetalert2": "^11.10.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

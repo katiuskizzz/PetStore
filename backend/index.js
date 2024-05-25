@@ -1,36 +1,34 @@
-import express from "express";
-import bodyParser from 'body-parser';
-import rutaUsuario from "./src/routes/usuario.routes.js"; // Asegúrate de que esta sea la ubicación correcta de tu enrutador
-import validacionLogin from "./src/routes/autenticacion.routes.js";
-import Pets from "./src/routes/Pets.routes.js";
-import categories from "./src/routes/categories.routes.js";
-import razas from "./src/routes/Raze.routes.js";
-import generos from "./src/routes/genders.routes.js";
-import cors from 'cors';
+import express from 'express'
+import body_parser from 'body-parser'
+import cors from 'cors'
+import routePets from './src/routes/mascotas.routes.js'
+import routeUser from './src/routes/user.routes.js'
+import routeCategorias from './src/routes/categorias.routes.js'
+import routeGeneros from './src/routes/generos.routes.js'
+import routeRazas from './src/routes/razas.routes.js'
 
-const app = express();
-const port = 3500;
+const app = express()
+app.use(cors())
+const PORT = 4000
 
+app.use(body_parser.json())
+app.use(body_parser.urlencoded({extend: false}))
 
+app.use('/user', routeUser)
+app.use('/pets', routePets)
+app.use('/categoria', routeCategorias)
+app.use('/genero', routeGeneros)
+app.use('/razas', routeRazas)
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors({
-    origin: 'http://localhost:5173' // Agrega el origen de tu cliente aquí
-  }));
-  app.set('view engine', 'ejs');
-  app.set('views', './views');
-  
-  app.get('/documents', (req, res) => {
-      res.render('document.ejs');
-  });
+app.set("view engine", "ejs")
+app.set("views", "./view")
 
-app.use(rutaUsuario);
-app.use(validacionLogin)
-app.use(Pets)
-app.use(categories)
-app.use(generos)
-app.use(razas)
-app.use('/img', express.static('img/'));
+app.use(express.static('./public'))
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.get("/documents", (req, res) => {
+    res.render("document.ejs")
+})
+
+app.listen(4000, () => {
+    console.log(`En ejecucion en el puerto  ${PORT}`);
+})
